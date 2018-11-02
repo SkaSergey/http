@@ -9,6 +9,7 @@ if (!file_exists(__DIR__ . '/uploads/' . $id)) {
 		echo 'Неправильный номер теста';
 		exit;
 	}
+
 $json = file_get_contents(__DIR__ . '/uploads/' . $id);
 $test = json_decode($json, true);
 
@@ -16,6 +17,7 @@ $test = json_decode($json, true);
 // var_dump($test);
 // print_r("</pre>");
  ?>
+ <?php  ?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -24,7 +26,8 @@ $test = json_decode($json, true);
 	</title>
 </head>
 <body>
-	<form action="img.php" method="POST">
+	 <?php echo "<form action=\"img.php?id=$id\" method=\"POST\">"; ?>
+	
 		<?php foreach ($test['0'] as $key => $question) : ?>
 		<fieldset>
 			<legend><?= $question['0'] ?></legend>
@@ -35,36 +38,14 @@ $test = json_decode($json, true);
 		</fieldset>	
 		<?php endforeach; unset($key); unset($question);?>
 		<input type="text" placeholder="Введите ваше имя" name="name" required>
-		
+
 		<input type="submit" value="Отправить">
 		
 	</form>
-	<!-- скрипт подсчета правильных ответов -->
-	<?php 
-		unset($i);
-		$i=0;
-		$answers = 0;
-		$all = 0;
-		
-		
-		if (!empty($_POST)) {
-			foreach ($_POST as $q => $a) {
-				$all++;
-					if ($i <= count($test['1'])-1) {
-						if ($a == $test['1']["$i"]['0']) {
-							$answers++; 
-						}
-						$i++;
-					}
-			}
-				echo 'У вас ' . $answers . ' правильных ответов из ' . $i;		
-		}
-		
-	 ?>
-	
 	
 <p>
 	<a href="list.php">Перейти к списку тестов</a>
 </p>
+
 </body>
 </html>
