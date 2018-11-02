@@ -32,7 +32,6 @@ if (isset($_FILES['file']['name'])) {
 		$file_path = __DIR__ . '/uploads/';
 		$file_url = './uploads/' . $file_name;
 		move_uploaded_file($_FILES['file']['tmp_name'], $file_path . $file_name);
-		print("Файл успешно загружен: <a href='$file_url'>$file_name</a>");
 		header('Location: list.php'); 
 
 		}
