@@ -36,7 +36,7 @@ $test = json_decode($json, true);
 				}
 			?>
 		</fieldset>	
-		<?php endforeach; unset($key); unset($question);?>
+		<?php endforeach;?>
 		<input type="text" placeholder="Введите ваше имя" name="name" required>
 
 		<input type="submit" value="Отправить">
