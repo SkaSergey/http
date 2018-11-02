@@ -18,4 +18,4 @@ imagettftext($img, 24, 0, 100, 159, $color, $font, $text);
 header('Content-type: image/png');
 imagepng($img);
 ?>
-
+рррр
